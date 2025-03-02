@@ -22,7 +22,7 @@ namespace EcomerceRazorPages.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EcomerceRazorPages.Models.Categorias", b =>
+            modelBuilder.Entity("EcomerceRazorPages.Models.Categoria", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

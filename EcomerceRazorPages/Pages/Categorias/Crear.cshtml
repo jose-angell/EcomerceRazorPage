@@ -1,0 +1,51 @@
+﻿@page
+@model EcomerceRazorPages.Pages.Categorias.CrearModel
+@{
+    ViewData["Title"] = "Crear Categoria";
+}
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h4><i class="fa fa-plus-circle"></i> Crear nueva categoria</h4>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                <div asp-validation-summary="All" class="alert alert-danger d-none" id="validacion-summary"></div>
+                @* Campo: Nombre *@
+                <div class="mb-3">
+                    <label asp-for="Categoria.Nombre" class="form-label"></label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa fa-tag"></i> </span>
+                        <input asp-for="Categoria.Nombre" class="form-control" placeholder="Ingresa el nombre de categoria"/>
+                    </div>
+                    <div asp-validation-for="Categoria.Nombre" class="text-danger"></div>
+                </div>
+                @* Campo: Orden de visualizacion *@
+                <div class="mb-3">
+                    <label asp-for="Categoria.OrdenVisualizacion" class="form-label"></label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fa fa-sort-numeric-up-alt"></i> </span>
+                        <input asp-for="Categoria.OrdenVisualizacion" class="form-control" placeholder="Ingresa el Orden de visualizacion" />
+                    </div>
+                    <div asp-validation-for="Categoria.OrdenVisualizacion" class="text-danger"></div>
+                </div>
+                @* Botones *@
+                <div class="d-flex justify-content-between">
+                    <a asp-page="Index" class="btn btn-outline-secondary"><i class="fa fa-arrow-left"></i> Cancelar</a>
+                    <button type="submit" class="btn btn-outline-success"><i class="fa fa-save"></i> Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const validationSummary = document.getElementById("validacion-summary");
+            if(validationSummary.innerHTML.trim() != ""){
+                validationSummary.classList.remove("d-none")
+            }
+        })
+    </script>
+}

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcomerceRazorPages.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250225031722_modeloCategoria")]
+    [Migration("20250225035016_modeloCategoria")]
     partial class modeloCategoria
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace EcomerceRazorPages.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("EcomerceRazorPages.Models.Categorias", b =>
+            modelBuilder.Entity("EcomerceRazorPages.Models.Categoria", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

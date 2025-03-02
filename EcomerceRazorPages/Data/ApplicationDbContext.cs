@@ -10,6 +10,6 @@ namespace EcomerceRazorPages.Data
 
         }
         //here put the DbSets of all tables
-        public DbSet<Categorias> Categorias { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
     }
 }

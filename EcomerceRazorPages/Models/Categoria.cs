@@ -2,7 +2,7 @@
 
 namespace EcomerceRazorPages.Models
 {
-    public class Categorias
+    public class Categoria
     {
         [Key]
         public int Id { get; set; }
