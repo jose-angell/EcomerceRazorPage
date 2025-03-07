@@ -20,6 +20,13 @@ namespace EcomerceRazorPages.Pages.Categorias
         }
         public async Task<IActionResult> OnpostAsync()
         {
+            //valida si el nombre ya existe
+            bool nombreExiste = _context.Categorias.Any(c => c.Nombre == Categoria.Nombre);
+            if (nombreExiste)
+            {
+                ModelState.AddModelError("Categoria.Nombre", "El nombre de la categoria ya existe. Por favor elige otro");
+                return Page();
+            }
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -27,6 +34,8 @@ namespace EcomerceRazorPages.Pages.Categorias
             Categoria.FechaCreacion = DateTime.Now;
             _context.Categorias.Add(Categoria);
             await _context.SaveChangesAsync();
+            // Usar TemData para mostrar el mensaje en la pagina de indice
+            TempData["Success"] = "Categoria creada con exito";
             return RedirectToPage("Index");
         }
     }
