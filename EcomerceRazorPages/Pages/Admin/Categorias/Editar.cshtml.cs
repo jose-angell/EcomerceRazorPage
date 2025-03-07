@@ -2,9 +2,8 @@ using ECommerce.DataAccess;
 using ECommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 
-namespace EcomerceRazorPages.Pages.Admin.Categorias
+namespace ECommerceRazorPages.Pages.Admin.Categorias
 {
     public class EditarModel : PageModel
     {

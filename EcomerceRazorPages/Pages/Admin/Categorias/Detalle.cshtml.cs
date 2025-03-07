@@ -3,7 +3,7 @@ using ECommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace EcomerceRazorPages.Pages.Admin.Categorias
+namespace ECommerceRazorPages.Pages.Admin.Categorias
 {
     public class DetalleModel : PageModel
     {
