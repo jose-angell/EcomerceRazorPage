@@ -23,10 +23,13 @@ namespace EcomerceRazorPages.Pages.Categorias
             var categoria = await _context.Categorias.FindAsync(id);
             if (categoria == null)
             {
-                return NotFound();
+                TempData["Error"] = "Categoria No encontrada";
+                return RedirectToPage("Index");
+                //return NotFound();
             }
             _context.Categorias.Remove(categoria);
             await _context.SaveChangesAsync();
+            TempData["Success"] = "Categoria elimminada con Exito";
             return new JsonResult(new { success = true });
         }
     }

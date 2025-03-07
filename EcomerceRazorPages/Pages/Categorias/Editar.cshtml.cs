@@ -20,6 +20,7 @@ namespace EcomerceRazorPages.Pages.Categorias
             Categoria = await _context.Categorias.FindAsync(id);
             if (Categoria == null)
             {
+                TempData["Error"] = "Categoria No encontrada";
                 return NotFound();
             }
             return Page();
@@ -33,12 +34,15 @@ namespace EcomerceRazorPages.Pages.Categorias
             var categoriaDb = await _context.Categorias.FindAsync(Categoria.Id);
             if (categoriaDb == null)
             {
-                return NotFound();
+                TempData["Error"] = "Categoria No encontrada";
+                return RedirectToPage("Index");
+                //return NotFound();
             }
             categoriaDb.Nombre = Categoria.Nombre;
             categoriaDb.OrdenVisualizacion = Categoria.OrdenVisualizacion;
 
             await _context.SaveChangesAsync();
+            TempData["Success"] = "Categoria Editada con exito";
             return RedirectToPage("Index");
         }
     }
