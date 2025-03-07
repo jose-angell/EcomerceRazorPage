@@ -27,8 +27,19 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Inicio</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Categorias/Index">Categorias</a>
+                        <!-- Menu desplegable Admin -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="adminDropdow" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Administracion
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="adminDropdow">
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-page="/Admin/Categorias/Index">Categorias</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-area="" asp-page="/Admin/Categorias/Index">Ejemplo</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -53,20 +64,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.15.10/sweetalert2.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            // CompositionEvent hay un mensaje en else TempData
-            var successMessage = '@TempData["Success"]'
-            var errorMessage = '@TempData["Error"]'
-            if(successMessage){
-                toastr.success(successMessage)
-            }
-            if(errorMessage){
-                toastr.error(errorMessage)
-            }
-        })
-    </script>
+    @section Scripts {
+        <script>
+            $(document).ready(function() {
+                // CompositionEvent hay un mensaje en else TempData
+                var successMessage = '@TempData["Success"]'
+                var errorMessage = '@TempData["Error"]'
+                if(successMessage){
+                    toastr.success(successMessage)
+                }
+                if(errorMessage){
+                    toastr.error(errorMessage)
+                }
+            })
+        </script>
+    }
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

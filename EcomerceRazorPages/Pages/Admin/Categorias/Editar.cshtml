@@ -1,22 +1,24 @@
-﻿@page
-@model EcomerceRazorPages.Pages.Categorias.CrearModel
+﻿@page "{id:int}"
+@model EcomerceRazorPages.Pages.Admin.Categorias.EditarModel
 @{
-    ViewData["Title"] = "Crear Categoria";
+    ViewData["Title"] = "Editar Categoria";
 }
+<h2 class="text-center">Editar Categoria</h2>
 <div class="container mt-5">
     <div class="card shadow-lg">
         <div class="card-header bg-primary text-white">
-            <h4><i class="fa fa-plus-circle"></i> Crear nueva categoria</h4>
+            <h4><i class="fa-solid fa-pen-to-square"></i> Editar categoria</h4>
         </div>
         <div class="card-body">
             <form method="post">
+                <input asp-for="Categoria.Id" type="hidden" />
                 <div asp-validation-summary="All" class="alert alert-danger d-none" id="validacion-summary"></div>
                 @* Campo: Nombre *@
                 <div class="mb-3">
                     <label asp-for="Categoria.Nombre" class="form-label"></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fa fa-tag"></i> </span>
-                        <input asp-for="Categoria.Nombre" class="form-control" placeholder="Ingresa el nombre de categoria"/>
+                        <input asp-for="Categoria.Nombre" class="form-control" placeholder="Ingresa el nombre de categoria" />
                     </div>
                     <div asp-validation-for="Categoria.Nombre" class="text-danger"></div>
                 </div>
@@ -32,7 +34,7 @@
                 @* Botones *@
                 <div class="d-flex justify-content-between">
                     <a asp-page="Index" class="btn btn-outline-secondary"><i class="fa fa-arrow-left"></i> Cancelar</a>
-                    <button type="submit" class="btn btn-outline-success"><i class="fa fa-save"></i> Guardar</button>
+                    <button type="submit" class="btn btn-outline-success"><i class="fa fa-save"></i> Editar</button>
                 </div>
             </form>
         </div>

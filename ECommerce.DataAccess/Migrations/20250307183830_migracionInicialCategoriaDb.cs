@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace EcomerceRazorPages.Migrations
+namespace ECommerce.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class modeloCategoria : Migration
+    public partial class migracionInicialCategoriaDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

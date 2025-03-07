@@ -1,7 +1,7 @@
-﻿using EcomerceRazorPages.Models;
+﻿using ECommerce.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace EcomerceRazorPages.Data
+namespace ECommerce.DataAccess
 {
     public class ApplicationDbContext: DbContext
     {

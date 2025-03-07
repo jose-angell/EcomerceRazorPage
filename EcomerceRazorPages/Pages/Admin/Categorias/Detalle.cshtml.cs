@@ -1,9 +1,9 @@
-using EcomerceRazorPages.Data;
-using EcomerceRazorPages.Models;
+using ECommerce.DataAccess;
+using ECommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace EcomerceRazorPages.Pages.Categorias
+namespace EcomerceRazorPages.Pages.Admin.Categorias
 {
     public class DetalleModel : PageModel
     {
