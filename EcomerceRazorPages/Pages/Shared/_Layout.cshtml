@@ -64,21 +64,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.15.10/sweetalert2.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
-    @section Scripts {
-        <script>
-            $(document).ready(function() {
-                // CompositionEvent hay un mensaje en else TempData
-                var successMessage = '@TempData["Success"]'
-                var errorMessage = '@TempData["Error"]'
-                if(successMessage){
-                    toastr.success(successMessage)
-                }
-                if(errorMessage){
-                    toastr.error(errorMessage)
-                }
-            })
-        </script>
-    }
+    <script>
+        $(document).ready(function() {
+            // CompositionEvent hay un mensaje en else TempData
+            var successMessage = '@TempData["Success"]'
+            var errorMessage = '@TempData["Error"]'
+            if(successMessage){
+                toastr.success(successMessage)
+            }
+            if(errorMessage){
+                toastr.error(errorMessage)
+            }
+        })
+    </script>
+   
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

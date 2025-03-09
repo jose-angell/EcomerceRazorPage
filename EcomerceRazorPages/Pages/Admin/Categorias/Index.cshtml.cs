@@ -1,4 +1,5 @@
 using ECommerce.DataAccess;
+using ECommerce.DataAccess.Repository.IRepository;
 using ECommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,27 +9,27 @@ namespace ECommerceRazorPages.Pages.Admin.Categorias
 {
     public class IndexModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
-        public IndexModel(ApplicationDbContext context)
+        private readonly IUnitOfWork _unitOfWork;
+        public IndexModel(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
-        public IList<Categoria> Categorias { get; set; } = default!;
-        public async Task OnGetAsync()
+        public IEnumerable<Categoria> Categorias { get; set; } = default!;
+        public void  OnGet()
         {
-            Categorias = await _context.Categorias.OrderBy(c => c.OrdenVisualizacion).ToListAsync();
+            Categorias = _unitOfWork.Categoria.GetAll();
         }
-        public async Task<IActionResult> OnPostDeleteAsync([FromBody] int id)
+        public async Task<IActionResult> OnPostDelete([FromBody] int id)
         {
-            var categoria = await _context.Categorias.FindAsync(id);
+            var categoria = _unitOfWork.Categoria.GetFirstOrDefault(c => c.Id == id);
             if (categoria == null)
             {
                 TempData["Error"] = "Categoria No encontrada";
                 return RedirectToPage("Index");
                 //return NotFound();
             }
-            _context.Categorias.Remove(categoria);
-            await _context.SaveChangesAsync();
+            _unitOfWork.Categoria.Remove(categoria);
+            _unitOfWork.Save();
             TempData["Success"] = "Categoria elimminada con Exito";
             return new JsonResult(new { success = true });
         }

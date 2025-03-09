@@ -1,4 +1,6 @@
 using ECommerce.DataAccess;
+using ECommerce.DataAccess.Repository;
+using ECommerce.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+//Agregar Repositorios al contenedor de Inyeccion de dependencias
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
