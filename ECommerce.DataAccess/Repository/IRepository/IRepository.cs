@@ -15,6 +15,6 @@ namespace ECommerce.DataAccess.Repository.IRepository
         void RemoveRange(IEnumerable<T> entity);
         IEnumerable<T> GetAll();
         T GetFirstOrDefault(Expression<Func<T,bool>> ? filter = null); // pasa una expresion
-
+        bool ExisteNombre(string nombre);
     }
 }

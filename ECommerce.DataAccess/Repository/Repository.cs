@@ -48,5 +48,9 @@ namespace ECommerce.DataAccess.Repository
         {
             dbSet.RemoveRange(entity);
         }
+        public bool ExisteNombre(string nombre)
+        {
+            return _context.Categorias.Any(c => c.Nombre == nombre);
+        }
     }
 }

@@ -16,20 +16,11 @@ namespace ECommerce.DataAccess.Repository
         {
             _context = context;
         }
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
-
         public void Update(Categoria categoria)
         {
             var objDesdeDb = _context.Categorias.FirstOrDefault(c => c.Id == categoria.Id);
             objDesdeDb.Nombre = categoria.Nombre;
             objDesdeDb.OrdenVisualizacion = categoria.OrdenVisualizacion;
-        }
-        public Categoria Find(int id)
-        {
-            return _context.Categorias.Find(id);
         }
     }
 }

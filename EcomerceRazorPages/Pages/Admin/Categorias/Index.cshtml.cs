@@ -9,27 +9,27 @@ namespace ECommerceRazorPages.Pages.Admin.Categorias
 {
     public class IndexModel : PageModel
     {
-        private readonly ICategoriaRepository _dbCategoria;
-        public IndexModel(ICategoriaRepository dbCategoria)
+        private readonly IUnitOfWork _unitOfWork;
+        public IndexModel(IUnitOfWork unitOfWork)
         {
-            _dbCategoria = dbCategoria;
+            _unitOfWork = unitOfWork;
         }
         public IEnumerable<Categoria> Categorias { get; set; } = default!;
         public void  OnGet()
         {
-            Categorias = _dbCategoria.GetAll();
+            Categorias = _unitOfWork.Categoria.GetAll();
         }
-        public async Task<IActionResult> OnPostDeleteAsync([FromBody] int id)
+        public async Task<IActionResult> OnPostDelete([FromBody] int id)
         {
-            var categoria =  _dbCategoria.Find(id);
+            var categoria = _unitOfWork.Categoria.GetFirstOrDefault(c => c.Id == id);
             if (categoria == null)
             {
                 TempData["Error"] = "Categoria No encontrada";
                 return RedirectToPage("Index");
                 //return NotFound();
             }
-            _dbCategoria.Remove(categoria);
-            _dbCategoria.Save();
+            _unitOfWork.Categoria.Remove(categoria);
+            _unitOfWork.Save();
             TempData["Success"] = "Categoria elimminada con Exito";
             return new JsonResult(new { success = true });
         }
