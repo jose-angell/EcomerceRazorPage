@@ -17,6 +17,9 @@ namespace ECommerce.Models
         [Display(Name = "Orden de visualizacion")]
         public int OrdenVisualizacion { get; set; }
 
-        public DateTime FechaCreacion { get; set; } = DateTime.Now; 
+        public DateTime FechaCreacion { get; set; } = DateTime.Now;
+
+        //Relacion de uno a muchos: Una categoria puede tener muchos productos
+        public ICollection<Producto> Productos { get; set; }
     }
 }
