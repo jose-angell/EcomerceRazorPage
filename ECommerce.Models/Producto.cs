@@ -34,6 +34,8 @@ namespace ECommerce.Models
         [Display(Name = "Cantidad Desponible")]
         public Decimal CantidadDisponible { get; set; }
 
+        public DateTime FechaCreacion { get; set; } = DateTime.Now;
+
         //Relacion entre categorias y productos
         [Required(ErrorMessage = "La categoria es obligatoria")]
         public int CategoriaId { get; set; }
