@@ -14,8 +14,10 @@ namespace ECommerce.DataAccess.Repository
         {
             _context = context;
             Categoria = new CategoriaRepository(_context);
+            Producto = new ProductoRepository(_context);
         }
         public ICategoriaRepository Categoria{ get; private set; }
+        public IProductoRepository Producto{ get; private set; }
         public void Dispose()
         {
             _context.Dispose();

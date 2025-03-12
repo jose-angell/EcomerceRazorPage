@@ -32,7 +32,9 @@ namespace ECommerce.Models
         [Required(ErrorMessage = "La Cantidad es obligatorio")]
         [Range(0, int.MaxValue, ErrorMessage = "La Cantidad no puede ser negativa.")]
         [Display(Name = "Cantidad Desponible")]
-        public Decimal CantidadDisponible { get; set; }
+        public int CantidadDisponible { get; set; }
+
+        public DateTime FechaCreacion { get; set; } = DateTime.Now;
 
         //Relacion entre categorias y productos
         [Required(ErrorMessage = "La categoria es obligatoria")]

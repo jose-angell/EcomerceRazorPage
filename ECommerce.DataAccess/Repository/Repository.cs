@@ -23,9 +23,17 @@ namespace ECommerce.DataAccess.Repository
             dbSet.Add(entity);
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(string? includePropierties = null)
         {
             IQueryable<T> query = dbSet;
+            //agrega la relacion
+            if (!string.IsNullOrWhiteSpace(includePropierties))
+            {
+                foreach(var includeProperty in includePropierties.Split(",",StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProperty.Trim());
+                }
+            }
             return query.ToList();
         }
 
