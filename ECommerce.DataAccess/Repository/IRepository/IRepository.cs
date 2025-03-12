@@ -13,7 +13,7 @@ namespace ECommerce.DataAccess.Repository.IRepository
         void Add(T entity);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entity);
-        IEnumerable<T> GetAll();
+        IEnumerable<T> GetAll(string? includePropierties = null);
         T GetFirstOrDefault(Expression<Func<T,bool>> ? filter = null); // pasa una expresion
         bool ExisteNombre(string nombre);
     }
