@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -21,9 +22,12 @@ namespace ECommerce.Models
         [StringLength(500, ErrorMessage = "La Descripcion no puede superar los 500 caracteres.")]
         public string Descripcion { get; set; }
 
-        [Required(ErrorMessage = "La Imagen es obligatorio")]
-        [MaxLength(500, ErrorMessage = "La ruta de la imagen no puede superar los 500 caracteres.")]
-        public string Imagen { get; set; }
+        //[Required(ErrorMessage = "La Imagen es obligatorio")]
+        //[MaxLength(500, ErrorMessage = "La ruta de la imagen no puede superar los 500 caracteres.")]
+        public string? Imagen { get; set; }
+
+        [NotMapped] // permite que este elemento se ignore al generar una migracion
+        public IFormFile? ImagenSubida { get; set; }
 
         [Required(ErrorMessage = "El Precio es obligatorio")]
         [Range(0.01, double.MaxValue, ErrorMessage = "El precio debe ser mayor a cero.")]

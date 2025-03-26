@@ -9,7 +9,7 @@
             <h4><i class="fa fa-plus-circle"></i> Crear nuevo Producto</h4>
         </div>
         <div class="card-body">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 <div asp-validation-summary="All" class="alert alert-danger d-none" id="validacion-summary"></div>
                 @* Campo: Nombre *@
                 <div class="mb-3">
@@ -34,9 +34,9 @@
                     <label asp-for="Producto.Imagen" class="form-label"></label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fa-solid fa-image"></i> </span>
-                        <input asp-for="Producto.Imagen" class="form-control" value="test.jpn" placeholder="Ingresa la Imagen del producto" />
+                        <input type="file" asp-for="Producto.ImagenSubida" class="form-control" placeholder="Ingresa la Imagen del producto" />
                     </div>
-                    <div asp-validation-for="Producto.Imagen" class="text-danger"></div>
+                    <div asp-validation-for="Producto.ImagenSubida" class="text-danger"></div>
                 </div>
                 @* Campo: Precio *@
                 <div class="mb-3">
