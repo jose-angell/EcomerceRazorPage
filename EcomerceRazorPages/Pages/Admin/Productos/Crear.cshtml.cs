@@ -37,33 +37,33 @@ namespace ECommerceRazorPages.Pages.Admin.Productos
                 return Page();
             }
             // Procesar la imagen subida
-            if(ImagenSubida != null)
+            if(Producto.ImagenSubida != null)
             {
                 string uploadFolder = Path.Combine(_hostEnvironment.WebRootPath,"productos");
-                string uniqueFileName = Guid.NewGuid().ToString() + "_" + ImagenSubida.FileName;
+                string uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(Producto.ImagenSubida.FileName);
                 if (!Directory.Exists(uploadFolder))
                 {
                     Directory.CreateDirectory(uploadFolder);
                 }
                 string filePath = Path.Combine(uploadFolder, uniqueFileName);
                 //Restricciones: tamaño y formato
-                if (ImagenSubida.Length > 2* 1024 * 1024)
+                if (Producto.ImagenSubida.Length > 2* 1024 * 1024)
                 {
                     ModelState.AddModelError("ImagenSubida", "El tamaño maximo permitido es de 2 MB.");
                     return Page();
                 }
                 //Extensikones permitidas
                 var allowedExtensions = new[] {".jpg",".jpeg",".png", ".gif"} ;
-                if (!allowedExtensions.Contains(Path.GetExtension(ImagenSubida.FileName).ToLower())) 
+                if (!allowedExtensions.Contains(Path.GetExtension(Producto.ImagenSubida.FileName).ToLower())) 
                 {
                     ModelState.AddModelError("ImagenSubida", "El archivo debe ser una imagen (.jpg, .jpeg, .png, .gif).");
                     return Page();
                 }
                 using (var fileStream = new FileStream(filePath, FileMode.Create)) 
                 {    
-                    ImagenSubida.CopyTo(fileStream);
+                    Producto.ImagenSubida.CopyTo(fileStream);
                 }
-                Producto.Imagen = "/productos/" + uniqueFileName;
+                Producto.Imagen = uniqueFileName;
             }
             Producto.FechaCreacion = DateTime.Now;
             _unitOfWork.Producto.Add(Producto);
