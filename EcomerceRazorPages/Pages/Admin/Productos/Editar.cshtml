@@ -1,15 +1,16 @@
 ﻿@page
-@model ECommerceRazorPages.Pages.Admin.Productos.CrearModel
+@model ECommerceRazorPages.Pages.Admin.Productos.EditarModel
 @{
-    ViewData["Title"] = "Crear Producto";
+    ViewData["Title"] ="Editar Producto";
 }
 <div class="container mt-5">
     <div class="card shadow-lg">
         <div class="card-header bg-primary text-white">
-            <h4><i class="fa fa-plus-circle"></i> Crear nuevo Producto</h4>
+            <h4><i class="fa fa-plus-circle"></i> Editar Producto</h4>
         </div>
         <div class="card-body">
             <form method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for=Producto.Id/>
                 <div asp-validation-summary="All" class="alert alert-danger d-none" id="validacion-summary"></div>
                 @* Campo: Nombre *@
                 <div class="mb-3">
@@ -32,6 +33,13 @@
                 @* Campo: Imagen *@
                 <div class="mb-3">
                     <label asp-for="Producto.Imagen" class="form-label"></label>
+                    <div>
+                        @if(!string.IsNullOrEmpty(Model.Producto.Imagen)){
+                            <div class="mb-3">
+                                <img src="~/Productos/@Model.Producto.Imagen" alt="@Model.Producto.Nombre" class="img-thumbnail" style="max-width:200px;"/>
+                            </div>
+                        }
+                    </div>
                     <div class="input-group">
                         <span class="input-group-text"><i class="fa-solid fa-image"></i> </span>
                         <input type="file" asp-for="Producto.ImagenSubida" class="form-control" placeholder="Ingresa la Imagen del producto" />
@@ -70,7 +78,7 @@
                 @* Botones *@
                 <div class="d-flex justify-content-between">
                     <a asp-page="Index" class="btn btn-outline-secondary"><i class="fa fa-arrow-left"></i> Cancelar</a>
-                    <button type="submit" class="btn btn-outline-success"><i class="fa fa-save"></i> Guardar</button>
+                    <button type="submit" class="btn btn-outline-success"><i class="fa fa-save"></i> Editar</button>
                 </div>
             </form>
         </div>
