@@ -40,7 +40,11 @@
             </dl>
             <dl class="row">
                 <dt class="col-sm-3">Imagen</dt>
-                <img src="@Url.Content($"~/Productos/{@Model.Producto.Imagen}")" alt="imagen de @Model.Producto.Nombre" style="width:80px; height:auto" />
+                <dd>
+                    @if(!string.IsNullOrEmpty(Model.Producto.Imagen)){
+                        <img src="@Url.Content($"~/Productos/{@Model.Producto.Imagen}")" alt="imagen de @Model.Producto.Nombre" style="width:80px; height:auto" />
+                    }
+                </dd>
             </dl>
         </div>
         <div class="card-footer text-end">
