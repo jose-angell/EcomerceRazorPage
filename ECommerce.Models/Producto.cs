@@ -42,6 +42,7 @@ namespace ECommerce.Models
 
         //Relacion entre categorias y productos
         [Required(ErrorMessage = "La categoria es obligatoria")]
+        [Display(Name ="Categoria")]
         public int CategoriaId { get; set; }
 
         [ForeignKey("CategoriaId")]
