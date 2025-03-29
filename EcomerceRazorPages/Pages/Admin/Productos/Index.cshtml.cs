@@ -22,7 +22,7 @@ namespace ECommerceRazorPages.Pages.Admin.Productos
             var producto = _unitOfWork.Producto.GetFirstOrDefault(c => c.Id == id);
             if (producto == null)
             {
-                TempData["Error"] = "Categoria No encontrada";
+                TempData["Error"] = "Producto No encontrado";
                 return RedirectToPage("Index");
                 //return NotFound();
             }
