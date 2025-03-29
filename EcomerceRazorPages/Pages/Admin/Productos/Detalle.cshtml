@@ -1,0 +1,50 @@
+﻿@page
+@model ECommerceRazorPages.Pages.Admin.Productos.DetalleModel
+@{
+    ViewData["Title"] = "Detalle Producto";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h4><i class="fa-solid fa-circle-info"></i> Detalle de categoria</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">ID</dt>
+                <dd class="col-sm-9">@Model.Producto.Id</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-3">Nombre</dt>
+                <dd class="col-sm-9">@Model.Producto.Nombre</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-3">Descripcion</dt>
+                <dd class="col-sm-9">@Model.Producto.Descripcion</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-3">Precio</dt>
+                <dd class="col-sm-9">@Model.Producto.Precio</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-3">Cantidad Disponible</dt>
+                <dd class="col-sm-9">@Model.Producto.CantidadDisponible</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-3">Categoria</dt>
+                <dd class="col-sm-9">@Model.Producto.Categoria.Nombre</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-3">Fecha de creacion</dt>
+                <dd class="col-sm-9">@Model.Producto.FechaCreacion.ToString("dd/MM/yyyy")</dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-3">Imagen</dt>
+                <img src="@Url.Content($"~/Productos/{@Model.Producto.Imagen}")" alt="imagen de @Model.Producto.Nombre" style="width:80px; height:auto" />
+            </dl>
+        </div>
+        <div class="card-footer text-end">
+            <a asp-page="Index" class="btn btn-outline-secondary"><i class="fa fa-arrow-left"></i> Regresar</a>
+        </div>
+    </div>
+</div>
