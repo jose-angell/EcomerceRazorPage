@@ -18,8 +18,4 @@
     <ProjectReference Include="..\ECommerce.DataAccess\ECommerce.DataAccess.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Cliente\" />
-  </ItemGroup>
-
 </Project>
