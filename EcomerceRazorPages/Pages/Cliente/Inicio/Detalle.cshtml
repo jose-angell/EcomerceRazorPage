@@ -1,0 +1,43 @@
+﻿@page
+@model ECommerceRazorPages.Pages.Cliente.Inicio.DetalleModel
+@{
+    ViewData["Title"] = "Detalle Producto";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Imagen del producto -->
+        <div class="col-md-6">
+            <img src="@Url.Content($"~/productos/{Model.Producto.Imagen}")"
+                 class="img-fluid rounded shadow w-100 h-100"
+                 alt="@Model.Producto.Nombre">
+        </div>
+
+        <!-- Detalles del producto -->
+        <div class="col-md-6">
+            <h1 class="display-5">@Model.Producto.Nombre</h1>
+            <p class="text-muted"><strong>Categoría:</strong> @Model.Producto.Categoria.Nombre</p>
+            <p class="text-muted"><strong>Precio:</strong> $@Model.Producto.Precio</p>
+            <p>@Model.Producto.Descripcion</p>
+            <p><strong>Cantidad disponible:</strong> @Model.Producto.CantidadDisponible</p>
+
+            <!-- Formulario para cantidad -->
+            <form method="post">
+                <div class="mb-3">
+                    <label for="Cantidad" class="form-label">Cantidad</label>
+                    <input type="number" id="Cantidad" name="Cantidad"
+                           class="form-control"
+                           min="1" max="@Model.Producto.CantidadDisponible"
+                           value="1" />
+                    <span asp-validation-for="Cantidad" class="text-danger"></span>
+                </div>
+
+                <!-- Botones -->
+                <div class="d-flex gap-2">
+                    <a asp-page="/Cliente/Inicio/Index" class="btn btn-success w-50">Regresar</a>
+                    <button type="submit" class="btn btn-dark w-50"><i class="fa-solid fa-cart-shopping"></i> Agregar al Carrito</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
