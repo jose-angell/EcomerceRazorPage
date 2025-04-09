@@ -15,12 +15,11 @@ namespace ECommerceRazorPages.Pages.Admin.Productos
         public Producto Producto { get; set; }
         public IActionResult OnGet(int id)
         {
-            Producto = _unitOfWork.Producto.GetFirstOrDefault(x => x.Id == id);
+            Producto = _unitOfWork.Producto.GetFirstOrDefault(x => x.Id == id,"Categoria");
             if(Producto == null)
             {
                 return NotFound();
             }
-           Producto.Categoria = _unitOfWork.Categoria.GetFirstOrDefault(x => x.Id == Producto.CategoriaId);
             return Page();
         }
     }
