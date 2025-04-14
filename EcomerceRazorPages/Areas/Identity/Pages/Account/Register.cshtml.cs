@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
+using ECommerce.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -89,6 +90,21 @@ namespace ECommerceRazorPages.Areas.Identity.Pages.Account
             [Display(Name = "Password")]
             public string Password { get; set; }
 
+            [Required]
+            public string Nombres { get; set; }
+
+            [Required]
+            public string Apellidos { get; set; }
+
+            [Required]
+            public string Ciudad { get; set; }
+
+            [Required]
+            public string Direccion { get; set; }
+
+            [Required]
+            public string Pais { get; set; }
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -116,6 +132,12 @@ namespace ECommerceRazorPages.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                user.Nombres = Input.Nombres;
+                user.Apellidos = Input.Apellidos;
+                user.Direccion = Input.Direccion;
+                user.Pais = Input.Pais;
+                user.Ciudad = Input.Ciudad;
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
@@ -154,11 +176,11 @@ namespace ECommerceRazorPages.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private IdentityUser CreateUser()
+        private ApplicationUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<IdentityUser>();
+                return Activator.CreateInstance<ApplicationUser>();
             }
             catch
             {
