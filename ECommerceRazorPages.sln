@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerceRazorPages", "EcomerceRazorPages\ECommerceRazorPages.csproj", "{8C82A15B-FBB4-4D45-9CE9-36B7A95A2929}"
+	ProjectSection(ProjectDependencies) = postProject
+		{06625DD4-86DC-4ADC-ADBD-1A14A3B1ADE9} = {06625DD4-86DC-4ADC-ADBD-1A14A3B1ADE9}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.DataAccess", "ECommerce.DataAccess\ECommerce.DataAccess.csproj", "{76F722E6-F827-4A41-8B14-9B09BA5B24A4}"
 EndProject
