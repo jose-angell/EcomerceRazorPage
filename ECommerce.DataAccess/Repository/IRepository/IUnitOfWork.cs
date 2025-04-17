@@ -10,6 +10,7 @@ namespace ECommerce.DataAccess.Repository.IRepository
     {
         ICategoriaRepository Categoria { get; }
         IProductoRepository Producto { get; }
+        ICarritoCompraRepository CarritoCompra { get; }
         void Save();
     }
 }
