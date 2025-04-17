@@ -8,18 +8,18 @@
     <div class="row">
         <!-- Imagen del producto -->
         <div class="col-md-6">
-            <img src="@Url.Content($"~/productos/{Model.Producto.Imagen}")"
+            <img src="@Url.Content($"~/productos/{Model.CarritoCompra.Producto.Imagen}")"
                  class="img-fluid rounded shadow w-100 h-100"
-                 alt="@Model.Producto.Nombre">
+                 alt="@Model.CarritoCompra.Producto.Nombre">
         </div>
 
         <!-- Detalles del producto -->
         <div class="col-md-6">
-            <h1 class="display-5">@Model.Producto.Nombre</h1>
-            <p class="text-muted"><strong>Categoría:</strong> @Model.Producto.Categoria.Nombre</p>
-            <p class="text-muted"><strong>Precio:</strong> $@Model.Producto.Precio</p>
-            <p>@Model.Producto.Descripcion</p>
-            <p><strong>Cantidad disponible:</strong> @Model.Producto.CantidadDisponible</p>
+            <h1 class="display-5">@Model.CarritoCompra.Producto.Nombre</h1>
+            <p class="text-muted"><strong>Categoría:</strong> @Model.CarritoCompra.Producto.Categoria.Nombre</p>
+            <p class="text-muted"><strong>Precio:</strong> $@Model.CarritoCompra.Producto.Precio</p>
+            <p>@Model.CarritoCompra.Producto.Descripcion</p>
+            <p><strong>Cantidad disponible:</strong> @Model.CarritoCompra.Producto.CantidadDisponible</p>
 
             <!-- Formulario para cantidad -->
             <form method="post">
@@ -27,9 +27,9 @@
                     <label for="Cantidad" class="form-label">Cantidad</label>
                     <input type="number" id="Cantidad" name="Cantidad"
                            class="form-control"
-                           min="1" max="@Model.Producto.CantidadDisponible"
+                           min="1" max="@Model.CarritoCompra.Producto.CantidadDisponible"
                            value="1" />
-                    <span asp-validation-for="Cantidad" class="text-danger"></span>
+                    <span asp-validation-for="CarritoCompra.Cantidad" class="text-danger"></span>
                 </div>
 
                 <!-- Botones -->
