@@ -3,6 +3,7 @@ using ECommerce.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 
 namespace ECommerceRazorPages.Pages.Cliente.Inicio
 {
@@ -20,25 +21,38 @@ namespace ECommerceRazorPages.Pages.Cliente.Inicio
         {
             CarritoCompra = new()
             {
-                Producto = _unitOfWork.Producto.GetFirstOrDefault(x => x.Id == id, "Categoria")
+                Producto = _unitOfWork.Producto.GetFirstOrDefault(x => x.Id == id, "Categoria"),
+                ProductoId = id
             };
 
             if (CarritoCompra == null)
             {
-                return NotFound();
+                return RedirectToPage("/Index");
             }
             return Page();
         }
-        //public IActionResult OnPost()
-        //{
-        //    if(Cantidad <1 || Cantidad > Producto.CantidadDisponible)
-        //    {
-        //        ModelState.AddModelError("Cantidad", $"Debe ingresar un valor entre 1 y {Producto.CantidadDisponible}");
-        //        return Page();
-        //    }
-        //    // Aqui se maneja la logica de agregar al carrito
-        //    TempData["Success"] = $"{Cantidad} unidades(es) del Producto {Producto.Nombre} añadido al carrito.";
-        //    return RedirectToPage("/Index");
-        //}
+        public IActionResult OnPost()
+        {
+            //if (Cantidad < 1 || Cantidad > Producto.CantidadDisponible)
+            //{
+            //    ModelState.AddModelError("Cantidad", $"Debe ingresar un valor entre 1 y {Producto.CantidadDisponible}");
+            //    return Page();
+            //}
+            if (ModelState.IsValid)
+            {
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                CarritoCompra.ApplicationUserId = claim.Value;
+                _unitOfWork.CarritoCompra.Add(CarritoCompra);
+                _unitOfWork.Save();
+
+
+                TempData["Success"] = $"{CarritoCompra.Cantidad} unidades(es) añadidas al carrito.";
+                return RedirectToPage("/Index");
+            }
+
+            // Aqui se maneja la logica de agregar al carrito
+            return Page();
+        }
     }
 }
