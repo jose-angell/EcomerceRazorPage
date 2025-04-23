@@ -19,8 +19,11 @@ namespace ECommerceRazorPages.Pages.Cliente.Inicio
        public CarritoCompra CarritoCompra { get; set; }
         public IActionResult OnGet(int id)
         {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             CarritoCompra = new()
             {
+                ApplicationUserId = claim.Value,
                 Producto = _unitOfWork.Producto.GetFirstOrDefault(x => x.Id == id, "Categoria"),
                 ProductoId = id
             };
@@ -40,14 +43,24 @@ namespace ECommerceRazorPages.Pages.Cliente.Inicio
             //}
             if (ModelState.IsValid)
             {
-                var claimsIdentity = (ClaimsIdentity)User.Identity;
-                var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-                CarritoCompra.ApplicationUserId = claim.Value;
-                _unitOfWork.CarritoCompra.Add(CarritoCompra);
-                _unitOfWork.Save();
+                //optengo la informacion de las contidades para este producto en particular
+                CarritoCompra carritoCompraDesdeDB = _unitOfWork.CarritoCompra.GetFirstOrDefault(
+                 filter: u => u.ApplicationUserId == CarritoCompra.ApplicationUserId && u.ProductoId == CarritoCompra.ProductoId
+                );
+                if(carritoCompraDesdeDB == null)
+                {
+                    _unitOfWork.CarritoCompra.Add(CarritoCompra);
+                    _unitOfWork.Save();
+                    TempData["Success"] = $"{CarritoCompra.Cantidad} unidades(es) añadidas al carrito.";
+                }
+                else
+                {
+                    _unitOfWork.CarritoCompra.IncrementarContador(carritoCompraDesdeDB, CarritoCompra.Cantidad);
+                    _unitOfWork.Save();
+                    TempData["Success"] = $"{CarritoCompra.Cantidad} unidades(es) actualizadas en el carrito.";
+                }
 
 
-                TempData["Success"] = $"{CarritoCompra.Cantidad} unidades(es) añadidas al carrito.";
                 return RedirectToPage("/Index");
             }
 

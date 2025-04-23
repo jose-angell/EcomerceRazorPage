@@ -9,6 +9,8 @@ namespace ECommerce.DataAccess.Repository.IRepository
 {
     public interface ICarritoCompraRepository: IRepository<CarritoCompra>
     {
-        
+        int IncrementarContador(CarritoCompra carritoCompra, int contador);
+        int DecrementarContador(CarritoCompra carritoCompra, int contador);
+
     }
 }
