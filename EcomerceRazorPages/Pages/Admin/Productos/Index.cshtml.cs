@@ -15,7 +15,7 @@ namespace ECommerceRazorPages.Pages.Admin.Productos
         public IEnumerable<Producto> Productos { get; set; } = default!;
         public void OnGet()
         {
-            Productos = _unitOfWork.Producto.GetAll("Categoria");
+            Productos = _unitOfWork.Producto.GetAll(includePropierties: "Categoria");
         }
         public async Task<IActionResult> OnPostDelete([FromBody] int id)
         {

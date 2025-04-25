@@ -15,7 +15,7 @@ namespace ECommerceRazorPages.Pages.Cliente.Inicio
         public IEnumerable<Producto> Productos { get; set; }
         public void OnGet()
         {
-            Productos = _unitOfWork.Producto.GetAll("Categoria");
+            Productos = _unitOfWork.Producto.GetAll(includePropierties: "Categoria");
         }
     }
 }

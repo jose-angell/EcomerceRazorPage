@@ -23,9 +23,13 @@ namespace ECommerce.DataAccess.Repository
             dbSet.Add(entity);
         }
 
-        public IEnumerable<T> GetAll(string? includePropierties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>> ? filter = null, string? includePropierties = null)
         {
             IQueryable<T> query = dbSet;
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
             //agrega la relacion
             if (!string.IsNullOrWhiteSpace(includePropierties))
             {
