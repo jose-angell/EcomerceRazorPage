@@ -1,0 +1,95 @@
+﻿@page
+@model ECommerceRazorPages.Pages.Cliente.Carrito.IndexModel
+@{
+}
+@{
+	ViewData["Title"] = "Carrito de Compra";
+}
+
+
+<form method="post">
+	<br />
+	@if (Model.ListaCarritoCompra.Count() == 0)
+	{
+		<div>
+			Por favor agrega items al carrito de compra
+		</div>
+	}
+	else
+	{
+		<div class="container">
+			<div class="card">
+				<div class="card-header bg-dark text-light ml-0 ">
+					<div class="row">
+						<div class="col-6 pt-2">
+							Carrito de Compra
+						</div>
+						<div class="col-6 text-end">
+							<a href="~/Cliente/Inicio/Index" class="btn btn-outline-light btn-sm">Continuar Comprando</a>
+						</div>
+					</div>
+				</div>
+				<div class="card-body">
+					@foreach (var item in Model.ListaCarritoCompra)
+					{
+						<div class="row">
+							<div class="d-none d-lg-block col-lg-2 text-center py-2">
+								<img src="~/productos/@item.Producto.Imagen" class="rounded" width="120" height="80" />
+							</div>
+							<div class="col-12 text-sm-center text-md-start col-md-5 pt-md-4 ">
+								<h4><strong>@item.Producto.Nombre</strong></h4>
+
+								<div class="badge bg-primary text-center" style="font-size:12px;">
+									@item.Producto.Categoria.Nombre
+								</div>
+							</div>
+							<div class="col-12 text-sm-center col-md-5 text-md-start row pt-3">
+								<div class="col-4 text-md-right pt-md-3" style="padding-top:5px;">
+									<h6><strong>$@item.Producto.Precio <span class="text-muted">x</span> @item.Cantidad </strong></h6>
+								</div>
+								<div class="col-6 col-sm-4 col-lg-6">
+									<button type="submit" class="btn btn-primary"
+											asp-page-handler="mas" asp-route-cartId="@item.Id">
+										<i class="fa-solid fa-plus"></i>
+									</button>
+									<button type="submit" class="btn btn-danger"
+											asp-page-handler="menos" asp-route-carritoId="@item.Id">
+										<i class="fa-solid fa-minus"></i>
+									</button>
+								</div>
+								<div class="col-2 col-sm-4 col-lg-2 text-right">
+									<button type="submit" class="btn btn-outline-danger"
+											asp-page-handler="eliminar" asp-route-carritoId="@item.Id">
+										<i class="fa-solid fa-trash-can"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<hr />
+					}
+
+					<div class="row">
+						<div class="col-12 col-md-5">
+						</div>
+						<div class="col-12 col-md-6 offset-md-1 col-lg-4 offset-lg-3 pr-4">
+							<ul class="list-group">
+								<li class="list-group-item d-flex justify-content-between bg-light">
+									<span class="text-info"> Total (USD)</span>
+
+								</li>
+							</ul>
+						</div>
+					</div>
+
+
+				</div>
+				<div class="card-footer">
+					<div class="col-12 col-lg-4 offset-lg-8 col-md-6 offset-md-6">
+						<a asp-page="Resumen" class="btn btn-success form-control">Resumen</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+</form>

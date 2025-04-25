@@ -25,23 +25,23 @@
                 <p><strong>Cantidad disponible:</strong> @Model.CarritoCompra.Producto.CantidadDisponible</p>
 
                 <!-- Formulario para cantidad -->
-                <form method="post">
-                    <div class="mb-3">
-                        <label for="Cantidad" class="form-label">Cantidad</label>
-                        <input type="number" id="Cantidad"
-                               asp-for="CarritoCompra.Cantidad"
-                               class="form-control"
-                               min="1" max="@Model.CarritoCompra.Producto.CantidadDisponible"
-                               value="1" />
-                        <span asp-validation-for="CarritoCompra.Cantidad" class="text-danger"></span>
-                    </div>
+               
+                <div class="mb-3">
+                    <label for="Cantidad" class="form-label">Cantidad</label>
+                    <input type="number" id="Cantidad"
+                            asp-for="CarritoCompra.Cantidad"
+                            class="form-control"
+                            min="1" max="@Model.CarritoCompra.Producto.CantidadDisponible"
+                            value="1" />
+                    <span asp-validation-for="CarritoCompra.Cantidad" class="text-danger"></span>
+                </div>
 
-                    <!-- Botones -->
-                    <div class="d-flex gap-2">
-                        <a asp-page="/Cliente/Inicio/Index" class="btn btn-success w-50">Regresar</a>
-                        <button type="submit" class="btn btn-dark w-50"><i class="fa-solid fa-cart-shopping"></i> Agregar al Carrito</button>
-                    </div>
-                </form>
+                <!-- Botones -->
+                <div class="d-flex gap-2">
+                    <a asp-page="/Cliente/Inicio/Index" class="btn btn-success w-50">Regresar</a>
+                    <button type="submit" class="btn btn-dark w-50"><i class="fa-solid fa-cart-shopping"></i> Agregar al Carrito</button>
+                </div>
+                
             </div>
         </div>
     </form>
