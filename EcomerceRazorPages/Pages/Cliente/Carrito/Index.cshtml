@@ -49,7 +49,7 @@
 								</div>
 								<div class="col-6 col-sm-4 col-lg-6">
 									<button type="submit" class="btn btn-primary"
-											asp-page-handler="mas" asp-route-cartId="@item.Id">
+											asp-page-handler="mas" asp-route-carritoId="@item.Id">
 										<i class="fa-solid fa-plus"></i>
 									</button>
 									<button type="submit" class="btn btn-danger"
@@ -75,7 +75,7 @@
 						<div class="col-12 col-md-6 offset-md-1 col-lg-4 offset-lg-3 pr-4">
 							<ul class="list-group">
 								<li class="list-group-item d-flex justify-content-between bg-light">
-									<span class="text-info"> Total (USD)</span>
+									<span class="text-info"> Total (USD): $ @Model.TotalCarrito</span>
 
 								</li>
 							</ul>
