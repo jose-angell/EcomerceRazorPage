@@ -43,6 +43,27 @@ namespace ECommerceRazorPages.Pages.Cliente.Inicio
             //}
             if (ModelState.IsValid)
             {
+                //cargar el producto directamente
+                var producto = _unitOfWork.Producto.GetFirstOrDefault(p => p.Id == CarritoCompra.ProductoId);
+                if (producto == null)
+                {
+                    return NotFound("No se encontro el producto relacionado");
+                }
+                //validar si el inventario es cero
+                if (producto.CantidadDisponible <= 0)
+                {
+                    TempData["Error"] = $"El producto no tiene inventario disponible.";
+                    return RedirectToAction("Detalle", new { id = CarritoCompra.ProductoId });
+                }
+                if (CarritoCompra.Cantidad < 1 || CarritoCompra.Cantidad > producto.CantidadDisponible)
+                {
+                    //ModelState.AddModelError("Cantidad", $"Debe ingresar un valor entre 1 y {producto.CantidadDisponible}");
+                    TempData["Error"] = $"Debe ingresar un valor entre 1 y {producto.CantidadDisponible}.";
+                    return RedirectToAction("Detalle",new {id = CarritoCompra.ProductoId});
+                }
+                //Reducir la cantidad disponible del producto
+                producto.CantidadDisponible -= CarritoCompra.Cantidad;  
+
                 //optengo la informacion de las contidades para este producto en particular
                 CarritoCompra carritoCompraDesdeDB = _unitOfWork.CarritoCompra.GetFirstOrDefault(
                  filter: u => u.ApplicationUserId == CarritoCompra.ApplicationUserId && u.ProductoId == CarritoCompra.ProductoId
