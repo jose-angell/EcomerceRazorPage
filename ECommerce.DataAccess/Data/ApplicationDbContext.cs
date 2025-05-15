@@ -15,5 +15,6 @@ namespace ECommerce.DataAccess
         public DbSet<Producto> Productos { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<CarritoCompra> CarritoCompra { get; set; }
+        public DbSet<Orden> Ordenes { get; set; }
     }
 }
