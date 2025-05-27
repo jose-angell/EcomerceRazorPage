@@ -37,7 +37,7 @@ namespace ECommerceRazorPages.Pages.Cliente.Carrito
                 ApplicationUser applicationUser = _unitOfWork.ApplicationUser.
                     GetFirstOrDefault(u => u.Id ==  claim.Value);
                 Orden.NombreUsuario = applicationUser.Nombres + " " + applicationUser.Apellidos;
-                Orden.Direccion = applicationUser.Direccion;
+                Orden.DireccionEnvio = applicationUser.Direccion;
                 Orden.Telefono = applicationUser.PhoneNumber;
                 Orden.InstruccionesAdicionales = Orden.InstruccionesAdicionales;
             }
