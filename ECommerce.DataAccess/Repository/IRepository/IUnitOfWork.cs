@@ -13,6 +13,7 @@ namespace ECommerce.DataAccess.Repository.IRepository
         ICarritoCompraRepository CarritoCompra { get; }
         IOrdenRepository Orden { get; }
         IDetalleOrdenRepository DetalleOrden { get; }
+        IApplicationUserRepository ApplicationUser { get; }
 
         void Save();
     }
