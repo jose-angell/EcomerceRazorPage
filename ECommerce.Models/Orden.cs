@@ -22,6 +22,7 @@ namespace ECommerce.Models
 
         public string? TransaccionId { get; set; }
 
+        public string NombreUsuario { get; set; }
         public string Telefono { get; set; }
 
         public string Direccion { get; set; }

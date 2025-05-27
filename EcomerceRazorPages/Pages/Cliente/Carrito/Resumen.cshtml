@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Resumen";
 }
-<form method="post">
+<form method="POST">
     <br />
     <div class="backgroundWhiteBorder">
         <div class="container">
@@ -34,7 +34,7 @@
                                         <label>Nombre Completo</label>
                                     </div>
                                     <div class="col-7">
-                                        <input name="Nombre" class="form-control" placeholder="Ingresa tu nombre" required />
+                                        <input asp-for="Orden.NombreUsuario" class="form-control" readonly disabled/>
                                     </div>
                                 </div>
                                 <div class="row my-1">
@@ -42,7 +42,7 @@
                                         <label>Teléfono</label>
                                     </div>
                                     <div class="col-7">
-                                        <input name="Telefono" type="tel" class="form-control" placeholder="Ingresa tu teléfono" required />
+                                        <input asp-for="Orden.Telefono" type="tel" class="form-control" readonly disabled />
                                     </div>
                                 </div>
                                 <div class="row my-1">
@@ -50,7 +50,7 @@
                                         <label>Dirección</label>
                                     </div>
                                     <div class="col-7">
-                                        <textarea data-no-tinymce="true" name="Direccion" class="form-control" placeholder="Ingresa tu dirección" required style="height: 100px;"></textarea>
+                                        <textarea data-no-tinymce="true" asp-for="Orden.Direccion" class="form-control" placeholder="Ingresa tu dirección" required style="height: 100px;" readonly disabled></textarea>
                                     </div>
                                 </div>
                                 <div class="row my-1">
@@ -58,7 +58,7 @@
                                         <label>Instrucciones Adicionales</label>
                                     </div>
                                     <div class="col-7">
-                                        <textarea data-no-tinymce="true" name="Instrucciones" class="form-control" placeholder="Opcional" style="height: 80px;"></textarea>
+                                        <textarea data-no-tinymce="true" asp-for="Orden.InstruccionesAdicionales" class="form-control" placeholder="Ingresa el mensje que desees" style="height: 80px;"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -70,25 +70,22 @@
                                 </h4>
                                 <ul class="list-group mb-3">
                                     <!-- Producto -->
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        <div>
-                                            <h6 class="my-0">Producto: Camiseta Básica</h6>
-                                            <small class="text-muted">Cantidad: 2</small>
-                                        </div>
-                                        <span class="text-muted">$30.00</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        <div>
-                                            <h6 class="my-0">Producto: Jeans Clásicos</h6>
-                                            <small class="text-muted">Cantidad: 1</small>
-                                        </div>
-                                        <span class="text-muted">$50.00</span>
-                                    </li>
+                                    @foreach(var detalle in Model.ListaCarritoCompra){
+
+                                        <li class="list-group-item d-flex justify-content-between">
+                                            <div>
+                                                <h6 class="my-0">Producto: @detalle.Producto.Nombre</h6>
+                                                <small class="text-muted">Cantidad: @detalle.Cantidad</small>
+                                            </div>
+                                            <span class="text-muted">$ @(detalle.Producto.Precio * detalle.Cantidad)</span>
+                                        </li>
+                                    
+                                    }
 
                                     <!-- Total -->
                                     <li class="list-group-item d-flex justify-content-between bg-light">
                                         <small class="text-info">Total (USD)</small>
-                                        <strong class="text-info">$80.00</strong>
+                                        <strong class="text-info">$ @Model.Orden.TotalOrden</strong>
                                     </li>
                                 </ul>
                             </div>
