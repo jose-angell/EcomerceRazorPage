@@ -22,13 +22,14 @@ namespace ECommerce.Models
 
         public string? TransaccionId { get; set; }
 
-        public string NombreUsuario { get; set; }
-        public string Telefono { get; set; }
+        public string? NombreUsuario { get; set; }
+        public string? Telefono { get; set; }
 
-        public string Direccion { get; set; }
+        public string? DireccionEnvio { get; set; }
 
         [Display(Name = "Instrucciones Adicionales")]
-        public string InstruccionesAdicionales { get; set; }
+        public string? InstruccionesAdicionales { get; set; }
+        public string? Estado { get; set; }
 
         [Display(Name = "Fecha de Orden")]
         public DateTime FechaOrden { get; set; }
